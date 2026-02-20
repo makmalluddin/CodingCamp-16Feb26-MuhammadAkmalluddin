@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Todo List</title>
+  <title>Modern Todo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,15 +19,11 @@
     <!-- Input Section -->
     <div class="flex gap-4 items-center mb-6">
 
-      <div class="flex-1">
-        <input id="todoInput" type="text" placeholder="What needs to be done?"
-          class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
-      </div>
+      <input id="todoInput" type="text" placeholder="What needs to be done?"
+        class="flex-1 px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
 
-      <div>
-        <input id="dateInput" type="date"
-          class="px-4 py-3 rounded-xl bg-white/20 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
-      </div>
+      <input id="dateInput" type="date"
+        class="px-4 py-3 rounded-xl bg-white/20 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
 
       <button onclick="addTodo()"
         class="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-500 hover:bg-indigo-600 transition text-white text-2xl shadow-lg">
@@ -38,7 +34,23 @@
 
     <!-- Action Bar -->
     <div class="flex justify-between items-center mb-4">
-      <span class="text-white/70 text-sm">Your Active Tasks</span>
+
+      <div class="flex gap-2 text-sm">
+        <button onclick="setFilter('all', this)" 
+          class="filter-btn px-3 py-1 rounded-full bg-indigo-500 text-white">
+          All
+        </button>
+
+        <button onclick="setFilter('completed', this)" 
+          class="filter-btn px-3 py-1 rounded-full bg-white/20 text-white">
+          Completed
+        </button>
+
+        <button onclick="setFilter('uncompleted', this)" 
+          class="filter-btn px-3 py-1 rounded-full bg-white/20 text-white">
+          Uncompleted
+        </button>
+      </div>
 
       <button onclick="deleteAll()"
         class="text-sm text-indigo-300 hover:text-white transition">
@@ -53,13 +65,14 @@
           <tr>
             <th class="py-3 text-left">Task</th>
             <th class="text-left">Due</th>
+            <th class="text-left">Status</th>
             <th class="text-right">Action</th>
           </tr>
         </thead>
 
         <tbody id="todoTable" class="divide-y divide-white/10">
           <tr id="emptyRow">
-            <td colspan="3" class="text-center py-6 text-white/50">
+            <td colspan="4" class="text-center py-6 text-white/50">
               No task yet
             </td>
           </tr>
